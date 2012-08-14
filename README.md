@@ -1,4 +1,4 @@
-# jquery.cookienote
+# jquery.cookieNote
 
 A lightweight jQuery plugin that helps you quickly include notices about use of cookies in your sites. Since the EU e-Privacy  Directive was announced this is becoming more and more prominent but it's an extra bit of work you might end up doing again and again.
 
