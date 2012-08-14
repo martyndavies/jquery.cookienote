@@ -12,6 +12,17 @@ Include script *after* the jQuery library if you're hand rolling your pages. If 
 
 ## Usage
 
+To use this plugin with the default settings, simply create a div with an ID
+
+    <div id="cookie-notice"><div>
+
+Place the div anywhere you like in the page, just before the </body> tag is best.
+
+Then call the cookieNote plugin on the div, like so:
+
+    $('#cookie-note').cookieNote();
+
+
 
 
 ## Authors
