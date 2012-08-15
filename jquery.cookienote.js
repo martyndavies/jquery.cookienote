@@ -96,7 +96,7 @@
       $('#cookienote-container').append(ul);
 
       // check if cookie is already set by this plugin and if so show nothing
-      if (jQuery().cookie && $.cookie('cookieNotice') === 'cookieNoticeAccepted') {
+      if ($.cookie && $.cookie('cookieNotice') === 'cookieNoticeAccepted') {
       	
       	$(this).css('display:none');
       	$(this).remove();
@@ -124,7 +124,7 @@
       $("#cookienote-continue-button").click(function(){
 
         if (settings.setCookie === true) {
-          if(jQuery().cookie) {
+          if($.cookie) {
             var randomNumber = guidGenerator();
             $.cookie('cookieNotice', 'cookieNoticeAccepted', { expires: settings.cookieExpiresIn, path: '/' });
             $(idq).slideUp("slow");
