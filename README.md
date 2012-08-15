@@ -8,7 +8,7 @@ This plugin saves you time and keeps you compliant.
 
 Include script *after* the jQuery library if you're hand rolling your pages. If you're using it inside a Rails app make sure you include it in your application.css
 
-    <script src="/path/to/jquery.cookienote.js"></script>
+    <script src="/path/to/jquery.cookienote.min.js"></script>
 
 ## Usage
 
@@ -16,7 +16,7 @@ To use this plugin with the default settings, simply create a div with an ID
 
     <div id="cookie-notice"><div>
 
-Place the div anywhere you like in the page, just before the </body> tag is best.
+Place the div anywhere you like in the page, just before the close of your body tag is best.
 
 Then call the cookieNote plugin on the div, like so:
 
