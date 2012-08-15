@@ -8,11 +8,15 @@ This fully customisable plugin saves you time and keeps you compliant.
 
 Include the link to the stylesheet in your page header or asset pipeline.
 
-		<link rel="stylesheet" href="/jquery.cookienote.css">
+```html
+<link rel="stylesheet" href="/jquery.cookienote.css">
+```
 
 Include the script tag *after* the jQuery library if you're hand rolling your pages. If you're using it inside a Rails app make sure you include it in your application.css
 
-    <script src="/jquery.cookienote.min.js"></script>
+```html
+<script src="/jquery.cookienote.min.js"></script>
+```
 
 ## Usage
 
@@ -24,8 +28,9 @@ Place the div anywhere you like in the page, just after you open the body tag is
 
 Then call the cookieNote plugin on the div, like so:
 
-	$('#cookie-note').cookieNote();
-
+```javascript
+$('#cookie-note').cookieNote();
+```
 
 ## Configuration
 
@@ -33,17 +38,21 @@ jQuery.cookieNote comes with some defaults set up to get you going out of the bo
 
 For instance, to change the initial background color of the notice to red, you can do this:
 
-	$('#cookie-note').cookieNote({
-		backgroundColor: '#cc0000'
-	});
+```javascript
+$('#cookie-note').cookieNote({
+	backgroundColor: '#cc0000'
+});
+```
 
 Or how about setting an animation option and a new height?
 
-	$('#cookie-note').cookieNote({
-		backgroundColor: '#cc0000',
-		height: 100,
-		animate: true
-	});
+```javascript
+$('#cookie-note').cookieNote({
+	backgroundColor: '#cc0000',
+	height: 100,
+	animate: true
+});
+```
 
 ### Default Configuration
 
@@ -53,7 +62,7 @@ Or how about setting an animation option and a new height?
 	'insertionType': 'overlay', // alternative is 'insert'
 	'animate': false, // this is cleaner
 	'animationStyle': 'slideDown', // if you must then this works best
-	'animationSpeed': "slow", // this is smoother
+	'animationSpeed': 'slow', // this is smoother, can also be 'fast' or milliseconds
 	'position': 'top', // where people will see it
 
 	'headingText': 'Cookies on this website', // standard generic
@@ -63,8 +72,59 @@ Or how about setting an animation option and a new height?
 	'setCookie': false, // if true you will need the jQuery.cookie plugin
 	'cookieExpiresIn': 7 // default one week, can be overridden
 
+#### width
+In percent, best left as the default, which is 100
 
+#### height
+In pixels, default is 80px
 
+#### backgroundColor
+Takes a hex value, or just a word, default is a dark grey like the BBC use
+
+#### insertionType
+Set this is you would prefer to insert the notice rather than overlay it (default). This makes sense if you have a navigation area at the top of the page and you would like the notice to be above that.
+
+	insertionType: 'insert'
+
+#### animate
+Sets whether an animation should be used to display the notice. Default is false.
+
+Set to true to use the default animation which is slideDown
+
+	animate: true
+
+#### animationStyle
+Sets the type of animation to use if the `animation` value is `true`. Default is `slideDown`.
+
+#### animationSpeed
+Sets the speed of the animation. Default is `slow` but can take `fast` or a millisecond value like `2000`.
+
+#### position
+Sets where on the page the notice is displayed. Default is `top` and you should just leave it alone.
+
+#### headingText
+Sets the heading value (`h2` in the included CSS).
+
+#### explainationText
+Sets the text explaining why the user is seeing the notice. Feel free to change. (Related to `p` in included CSS).
+
+#### confirmText
+Sets the text on the confirmation button
+
+#### setCookie
+Default is `false`. If you would like jQuery.cookieNote to also set up a cookie for the user that means the notice won't show again once they confirm they read it, you can set this to `true`.
+
+This feature is dependent on the excellent [jQuery.cookie](https://github.com/carhartl/jquery-cookie) plugin also being included in your page before jQuery.cookieNote. Your script includes should be in this order:
+
+```html
+<link rel="stylesheet" href="/jquery.cookienote.css"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="/jquery.cookie.js"></script>
+<script src="/jquery.cookienote.js"></script>
+```
+
+#### cookieExpiresIn
+Optional, you can change this to set a shorter or longer expiration date for your cookie. Default is one week.
 
 
 
