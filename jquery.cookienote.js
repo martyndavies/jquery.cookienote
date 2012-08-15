@@ -15,13 +15,14 @@
       'headingTextColor': '#ffffff',
       'headingText': 'Cookies on this website',
       'headingTextSize': 18,
-      'explainationText': 'We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we\'ll assume that you are happy to receive all cookies on the this website.',
+      'explainationText': 'We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we\'ll assume that you are happy to receive all cookies on the this website. However, if you would like to, you can change your cookie settings at any time.',
       'confirmText': 'Continue'
     };
 
     var options = $.extend(settings, options);
 
     return this.each(function() {
+
       $(this).css({'display':'none'});
 
       // apply some initial css to the container div, overrides will happen if set
@@ -49,7 +50,7 @@
       $('#cookienote-container').css({
         'color': settings.headingTextColor,
         'font-family': 'Arial, sans-serif',
-        'width': '740px',
+        'width': '800px',
         'position': 'relative',
         'margin': '0 auto'
       });
@@ -74,13 +75,34 @@
 
       // set the css for the h2 header text
       $('#cookienote-container p').css({
-        'font-size': settings.headingTextSize+'px',
         'float': 'left',
         'width': '460px',
         'line-height': '1.24',
         'color': '#BEBEBE',
         'margin-left': '20px',
         'font-size': '12px'
+      });
+
+      // add the continue link and optional 'find out more'
+      var ul = "<ul><li id=\"cookienote-continue\"><button type=\"button\" id=\"cookienote-continue-button\">"+settings.confirmText+"</button></li></ul>";
+      $('#cookienote-container').append(ul);
+
+      // set the css for the ul
+      $('#cookienote-container ul').css({
+        'position': 'absolute',
+        'left': '600px',
+        'font-weight':'bold',
+        'list-style-type': 'none'
+      });
+
+      $('#cookienote-container ul #cookienote-continue button').css({
+        'padding': '0 0 0 24px',
+        'background-position': '0 -251px',
+        'color': '#F6A21D',
+        'font-size': '1.2em',
+        'border': '0',
+        'cursor': 'pointer',
+        'background-color': 'transparent'
       });
 
 
@@ -98,6 +120,12 @@
       } else {
         $(this).css({'display':'block'})
       }
+
+      var idq = $(this);
+      // if continue is clicked, set a cookie and get rid
+      $("#cookienote-continue-button").click(function(){
+        $(idq).slideUp("slow");
+      });
 
     });
   
