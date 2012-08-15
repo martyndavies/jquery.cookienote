@@ -16,7 +16,7 @@ To use this plugin with the default settings, simply create a div with an ID
 
     <div id="cookie-notice"><div>
 
-Place the div anywhere you like in the page, just before the close of your body tag is best.
+Place the div anywhere you like in the page, just after you open the body tag is best.
 
 Then call the cookieNote plugin on the div, like so:
 

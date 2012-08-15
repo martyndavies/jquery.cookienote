@@ -1,0 +1,47 @@
+/* set the css for the container */
+#cookienote-container {
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  width: 800px;
+  position: relative;
+  margin: 0 auto;
+}
+
+ /* set the css for the h2 header text */
+#cookienote-container h2 {
+  font-size: 18px;
+  float: left;
+  text-align: right;
+  width: 140px;
+  font-weight: bold;
+  line-height: 1.12;
+}    
+
+/* set the paragraph text for your explaination */
+#cookienote-container p {
+  float: left;
+  width: 460px;
+  line-height: 1.24;
+  color: #BEBEBE;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+/* set the css for the ul that contains the continue link */
+
+#cookienote-container ul {
+  position: absolute;
+  left: 600px;
+  font-weight:bold;
+  list-style-type: none;
+}
+
+#cookienote-container ul #cookienote-continue button {
+  padding: 0 0 0 24px;
+  background-position: 0 -251px;
+  color: #F6A21D;
+  font-size: 1.2em;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+}

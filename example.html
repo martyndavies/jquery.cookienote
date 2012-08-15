@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>jQuery.cookieNote Example</title>
+	<link rel="stylesheet" href="/jquery.cookienote.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script src="/jquery.cookienote.js"></script>
 	<style type="text/css">
@@ -26,13 +27,15 @@
 	<script>
 		$(document).ready(function() {
 			$('#cookie-notice').cookieNote({
-				'animate': false
+				'animate': false,
+				'insertionType': 'insert'
 			});
 		});
 	</script>
 </head>
 <body>
-	<div id="container"></div>
 	<div id="cookie-notice"></div>
+	<div id="container"></div>
+
 </body>
 </html>

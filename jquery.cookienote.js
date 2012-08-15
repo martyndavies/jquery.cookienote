@@ -1,22 +1,33 @@
-(function($) {
+/*
+ * jQuery.cookieNote v0.1
+ * https://github.com/martyndavies/jquery.cookienote
+ *
+ * Copyright 2012, Martyn Davies
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.opensource.org/licenses/GPL-2.0
+ */
+ (function($) {
 
   $.fn.cookieNote = function(options) {
+
+  	// get hold of the div this plugin applies to
+    var idq = $(this);
     // set up the plugin defaults - these should be pretty sensible out of the box
     var settings = {
-      'width': 100,
-      'height': 80,
-      'textColor': '#505050',
-      'linkColor': '#cc0000',
-      'backgroundColor': '#323232',
-      'animate': false,
-      'animationStyle': 'slideDown',
-      'animationSpeed': "slow",
-      'position': 'top',
-      'headingTextColor': '#ffffff',
-      'headingText': 'Cookies on this website',
-      'headingTextSize': 18,
+      'width': 100, //percent
+      'height': 80, // pixels
+      'backgroundColor': '#323232', // can be overridden
+      'insertionType': 'overlay',
+      'animate': false, // this is cleaner
+      'animationStyle': 'slideDown', // if you must then this works best
+      'animationSpeed': "slow", // this is smoother
+      'position': 'top', // where people will see it
+      'headingText': 'Cookies on this website', // standard generic
       'explainationText': 'We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we\'ll assume that you are happy to receive all cookies on the this website. However, if you would like to, you can change your cookie settings at any time.',
-      'confirmText': 'Continue'
+      'confirmText': 'Continue', // standard generic
+      'setCookie': false, // if true you will need the jQuery.cookie plugin
+      'cookieExpiresIn': 7 // default one week, can be overridden
     };
 
     var options = $.extend(settings, options);
@@ -25,107 +36,112 @@
 
       $(this).css({'display':'none'});
 
-      // apply some initial css to the container div, overrides will happen if set
-      $(this).css({
-        'width': settings.width+'%',
-        'height': settings.height+'px',
-        'z-index': '1000',
-        'backgroundColor': settings.backgroundColor,
-        'position': 'absolute',
-        'color': 'textColor'
-      });
+      if (settings.insertionType === 'insert') {
+      	// apply some initial css to the container div, overrides will happen if set
+	      $(this).css({
+	        'width': settings.width+'%',
+	        'height': settings.height+'px',
+	        'backgroundColor': settings.backgroundColor,
+	        'position': 'relative',
+	        'color': 'textColor'
+	      });
 
-      // check where the user wants the notice displayed, sensible is top, they might pick bottom
-      if (settings.position === 'bottom') {
-        $(this).css({'bottom': '0'});
+	      // check where the user wants the notice displayed, sensible is top, they might pick bottom
+	      if (settings.position === 'bottom') {
+	        $(this).css({'bottom': '0'});
+	      } else {
+	        $(this).css({'top': '0'});
+	      }	
       } else {
-        $(this).css({'top': '0'});
+      	// apply some initial css to the container div, overrides will happen if set
+	      $(this).css({
+	        'width': settings.width+'%',
+	        'height': settings.height+'px',
+	        'z-index': '1000',
+	        'backgroundColor': settings.backgroundColor,
+	        'position': 'absolute',
+	        'color': 'textColor'
+	      });
+
+	      // check where the user wants the notice displayed, sensible is top, they might pick bottom
+	      if (settings.position === 'bottom') {
+	        $(this).css({'bottom': '0'});
+	      } else {
+	        $(this).css({'top': '0'});
+	      }	
       }
+
 
       // set the header div and style it
       var containerDiv = "<div id='cookienote-container'></div>";
       $(this).append(containerDiv);
 
-      // set the css for the container
-      $('#cookienote-container').css({
-        'color': settings.headingTextColor,
-        'font-family': 'Arial, sans-serif',
-        'width': '800px',
-        'position': 'relative',
-        'margin': '0 auto'
-      });
+
 
       // add the header text
       var h2 = "<h2>"+settings.headingText+"</h2>";
       $('#cookienote-container').append(h2);
 
-      // set the css for the h2 header text
-      $('#cookienote-container h2').css({
-        'font-size': settings.headingTextSize+'px',
-        'float': 'left',
-        'text-align': 'right',
-        'width': '140px',
-        'font-weight': 'bold',
-        'line-height': '1.12'
-      });
+
 
       // add the explainer text
       var p = "<p>"+settings.explainationText+"</p>";
       $('#cookienote-container').append(p);
 
       // set the css for the h2 header text
-      $('#cookienote-container p').css({
-        'float': 'left',
-        'width': '460px',
-        'line-height': '1.24',
-        'color': '#BEBEBE',
-        'margin-left': '20px',
-        'font-size': '12px'
-      });
+
 
       // add the continue link and optional 'find out more'
       var ul = "<ul><li id=\"cookienote-continue\"><button type=\"button\" id=\"cookienote-continue-button\">"+settings.confirmText+"</button></li></ul>";
       $('#cookienote-container').append(ul);
 
-      // set the css for the ul
-      $('#cookienote-container ul').css({
-        'position': 'absolute',
-        'left': '600px',
-        'font-weight':'bold',
-        'list-style-type': 'none'
-      });
-
-      $('#cookienote-container ul #cookienote-continue button').css({
-        'padding': '0 0 0 24px',
-        'background-position': '0 -251px',
-        'color': '#F6A21D',
-        'font-size': '1.2em',
-        'border': '0',
-        'cursor': 'pointer',
-        'background-color': 'transparent'
-      });
-
-
-      // display the div
-      if (settings.animate === true && settings.animationStyle === "slideDown") {
-        $(this).css({'height': '0px'}).show();
-        $(this).animate({height: settings.height+'px', display: 'block'}, settings.animationSpeed, function() {
-          // callback for slideDown
-        });
-      } else if (settings.animate === true && settings.animationStyle === "fadeIn") {
-        $(this).css({'opacity': '0'}).show();
-        $(this).animate({opacity: '1'}, settings.animationSpeed, function() {
-          // callback for slideDown
-        });
+      // check if cookie is already set by this plugin and if so show nothing
+      if (jQuery().cookie && $.cookie('cookieNotice') === 'cookieNoticeAccepted') {
+      	
+      	$(this).css('display:none');
+      	$(this).remove();
+      
       } else {
-        $(this).css({'display':'block'})
+	      // display the div
+	      if (settings.animate === true && settings.animationStyle === "slideDown") {
+	        $(this).css({'height': '0px'}).show();
+	        $(this).animate({height: settings.height+'px', display: 'block'}, settings.animationSpeed, function() {
+	          // callback for slideDown
+	        });
+	      } else if (settings.animate === true && settings.animationStyle === "fadeIn") {
+	        $(this).css({'opacity': '0'}).show();
+	        $(this).animate({opacity: '1'}, settings.animationSpeed, function() {
+	          // callback for fadeIn
+	        });
+	      } else if (settings.animate === false && settings.insertionType === 'insert'){
+					$(this).css({'display':'block'})
+	      } else {
+	      	$(this).css({'display':'block'})
+	      }
       }
 
-      var idq = $(this);
-      // if continue is clicked, set a cookie and get rid
+      // if continue is clicked, set a cookie if jQuery.cookie is present and get rid
       $("#cookienote-continue-button").click(function(){
-        $(idq).slideUp("slow");
+
+        if (settings.setCookie === true) {
+          if(jQuery().cookie) {
+            var randomNumber = guidGenerator();
+            $.cookie('cookieNotice', 'cookieNoticeAccepted', { expires: settings.cookieExpiresIn, path: '/' });
+            $(idq).slideUp("slow");
+          } else {
+            $.error('The jQuery.cookie plugin was not found, install this and try again!');
+          }
+        } else {
+          $(idq).slideUp("slow");
+        }
       });
+
+      function guidGenerator() {
+        var S4 = function() {
+          return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        };
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+      }
 
     });
   
