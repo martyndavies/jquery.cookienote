@@ -131,6 +131,10 @@ Optional, you can change this to set a shorter or longer expiration date for you
 
 What do you want? The moon on a stick? I haven't built independent cookie control into this because most likely you're going to be using something different on each project and who am I to decide how, when and why you set a cookie. The basic level should be to just not show the message this plugin displays to people that have already seen it and for that the jQuery.cookie library is perfectly fine.
 
+## Customisation
+
+The included CSS file contains a basic set of styles for every element that is written to the page dynamically. It's there for example only and you should really modify it to stay inline with the site you include this on.
+
 ## Development
 
 Feel free to fork this, the code is probably ropey as all hell. I'll refactor some of it soon and release another version.
