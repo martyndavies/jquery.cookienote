@@ -94,7 +94,7 @@ Set to true to use the default animation which is slideDown
 	animate: true
 
 #### animationStyle
-Sets the type of animation to use if the `animation` value is `true`. Default is `slideDown`.
+Sets the type of animation to use if the `animation` value is `true`. Default is `slideDown`. Alternative is `fadeIn`, you should probably only use this if your insertionType has been set to `overlay`.
 
 #### animationSpeed
 Sets the speed of the animation. Default is `slow` but can take `fast` or a millisecond value like `2000`.
