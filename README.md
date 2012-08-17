@@ -127,7 +127,13 @@ This feature is dependent on the excellent [jQuery.cookie](https://github.com/ca
 Optional, you can change this to set a shorter or longer expiration date for your cookie. Default is one week.
 
 
+## Yo, Davies, why the dependency?
 
+What do you want? The moon on a stick? I haven't built independent cookie control into this because most likely you're going to be using something different on each project and who am I to decide how, when and why you set a cookie. The basic level should be to just not show the message this plugin displays to people that have already seen it and for that the jQuery.cookie library is perfectly fine.
+
+## Development
+
+Feel free to fork this, the code is probably ropey as all hell. I'll refactor some of it soon and release another version.
 
 ## Authors
 
