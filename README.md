@@ -126,6 +126,17 @@ This feature is dependent on the excellent [jQuery.cookie](https://github.com/ca
 #### cookieExpiresIn
 Optional, you can change this to set a shorter or longer expiration date for your cookie. Default is one week.
 
+#### showPolicy
+Perhaps you want to link to your cookie policy, or just more information on cookies for the user. Set this to `true` to activate it. You can also override the `policyLink` and `policyText` settings to customise further, like so:
+
+```javascript
+$('#cookie-notice').cookieNote({
+	showPolicy: true,
+	policyLink: 'http://www.mysite.com/cookies.html',
+	policyText: 'More about cookies'
+});
+```
+
 
 ## Yo, Davies, why the dependency?
 

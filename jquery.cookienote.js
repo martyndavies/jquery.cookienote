@@ -1,5 +1,5 @@
 /*
- * jQuery.cookieNote v0.1
+ * jQuery.cookieNote v0.2
  * https://github.com/martyndavies/jquery.cookienote
  *
  * Copyright 2012, Martyn Davies
@@ -27,7 +27,10 @@
       'explainationText': 'We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we\'ll assume that you are happy to receive all cookies on the this website. However, if you would like to, you can change your cookie settings at any time.',
       'confirmText': 'Continue', // standard generic
       'setCookie': false, // if true you will need the jQuery.cookie plugin
-      'cookieExpiresIn': 7 // default one week, can be overridden
+      'cookieExpiresIn': 7, // default one week, can be overridden
+      'showPolicy': false, // need a link to your cookie policy?
+      'policyLink': '', // link for your cookie policy
+      'policyText': 'Cookie Policy'
     };
 
     var options = $.extend(settings, options);
@@ -92,8 +95,15 @@
 
 
       // add the continue link and optional 'find out more'
-      var ul = "<ul><li id=\"cookienote-continue\"><button type=\"button\" id=\"cookienote-continue-button\">"+settings.confirmText+"</button></li></ul>";
+      var ul = "<ul id=\"continue-list\"><li id=\"cookienote-continue\"><button type=\"button\" id=\"cookienote-continue-button\">"+settings.confirmText+"</button></li></ul>";
       $('#cookienote-container').append(ul);
+
+      // is the cookie policy link required?
+      if (settings.showPolicy === true) {
+        var policy_link = "<li id=\"cookienote-policy\"><a href=\""+settings.policyLink+"\">"+settings.policyText+"</a></li>";
+        $('#continue-list').append(policy_link);
+      } else {
+      }
 
       // check if cookie is already set by this plugin and if so show nothing
       if ($.cookie && $.cookie('cookieNotice') === 'cookieNoticeAccepted') {
