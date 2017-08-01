@@ -138,7 +138,7 @@ $('#cookie-notice').cookieNote({
 ```
 
 
-## Yo, Davies, why the dependency?
+## Why the dependency for setting cookies?
 
 What do you want? The moon on a stick? I haven't built independent cookie control into this because most likely you're going to be using something different on each project and who am I to decide how, when and why you set a cookie. The basic level should be to just not show the message this plugin displays to people that have already seen it and for that the jQuery.cookie library is perfectly fine.
 
@@ -148,11 +148,11 @@ The included CSS file contains a basic set of styles for every element that is w
 
 ## Development
 
-Feel free to fork this, the code is probably ropey as all hell. I'll refactor some of it soon and release another version.
+Not actively maintained. Feel free to fork this and make any changes you want.
 
 ## Authors
 
-[Martyn Davies (@martynrdavies)](http://www.twitter.com/martynrdavies)
+[Martyn Davies (@martynd)](http://www.twitter.com/martynd)
 
 ## License
 
